@@ -20,10 +20,13 @@ class fpm::centos {
   package { 'git':
     ensure => 'present',
   }
+  package { 'libffi-devel':
+    ensure => 'present',
+  }
   package { 'fpm':
     ensure => 'present',
     provider => 'gem',
-    require  => [ Package["rubygems"], Package["ruby-devel"] ],
+    require  => [ Package["rubygems"], Package["ruby-devel"] ], Package["libffi-devel"],
   }
 
   file { 'redis-rpm.sh':
